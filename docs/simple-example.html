@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/@plant/plant@2.4.0/dist/plant.js" integrity="sha384-hc0BExRTspC6FVmNT5iVMW7MnsFYEek6WzopHCMGlsbt8nUKqmAaAIlltJpssCP2" crossorigin="anonymous" type="application/javascript"></script>
+    <style type="text/css">
+      html {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        height: 100%;
+      }
+
+      body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Open DevTools' console to see output</p>
+    <script language="javascript">
+      // Instantiate server
+      const plant = new Plant()
+
+      // Add handler
+      plant.use('/', async ({req, res}) => {
+        const {value} = await req.json()
+
+        res.json({
+          value: !value
+        })
+      })
+
+      const handle = plant.getHandler()
+
+      const context = createContext('POST', 'https://localhost:8000/', {
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: streamFrom(
+          JSON.stringify({
+            value: false,
+          })
+        ),
+      })
+
+      handle(context)
+      .then(() => {
+        console.log(context)
+      })
+
+      function createContext(method, url, {headers = {}, body} = {}) {
+        const req = new Plant.Request({
+          url: new URL(url),
+          method,
+          body,
+          headers,
+        })
+
+        const res = new Plant.Response({
+          url: new URL(url),
+        })
+
+  const socket = new Plant.Socket({
+    peer: new Plant.Peer({
+      uri: new Plant.URI({
+        protocol: 'browser',
+        host: navigator.appName,
+      })
+    })
+  })
+
+        return {req, res, socket}
+      }
+
+      function streamFrom(value) {
+        return new ReadableStream({
+          start(controller) {
+            // Encode UTF8 into Uint8Array and push it into the stream
+            const encoder = new TextEncoder()
+            controller.enqueue(encoder.encode(value))
+            controller.close()
+          },
+        })
+      }
+    </script>
+  </body>
+</html>
