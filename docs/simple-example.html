@@ -64,14 +64,14 @@
           url: new URL(url),
         })
 
-  const socket = new Plant.Socket({
-    peer: new Plant.Peer({
-      uri: new Plant.URI({
-        protocol: 'browser',
-        host: navigator.appName,
-      })
-    })
-  })
+        const socket = new Plant.Socket({
+          peer: new Plant.Peer({
+            uri: new Plant.URI({
+              protocol: 'browser',
+              host: navigator.appName,
+            })
+          })
+        })
 
         return {req, res, socket}
       }
