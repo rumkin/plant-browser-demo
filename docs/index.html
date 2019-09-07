@@ -237,7 +237,7 @@
               it('Should handle request', async ({request}) => {
                 const res = await request('/api/v1/hello-world')
 
-                assert.equal(res.body, 'Hello, World', 'expect res.body "Hello, World!"')
+                assert.equal(res.body, 'Hello, World!', 'expect res.body "Hello, World!"')
               })
 
               it('Should not handle request', async ({request}) => {
