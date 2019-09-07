@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Plant · Browser Demo · v1.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="content-type" content="text/html;charsetutf-8">
+    <style type="text/css">
+      /* FOUC protection */
+      #root { opacity: 0 }
+    </style>
+  </head>
+  <body class="load" data-loading>
+    <div id="root">
+      <div class="container">
+        <header class="Header">
+          <div class="grow shrink-no">
+            <span class="Brand">
+              <span class="Brand-name">Plant</span>
+              <span class="Brand-product">Browser Demo</span>
+              <span class="Brand-version">v1.0</span>
+            </span>
+          </div>
+          <div class="grow-no shrink-no">
+            <nav class="HeaderNav">
+              <a href="#usage" class="btn">👆 Usage</a>
+              <a href="https://github.com/rumkin/plant-browser-demo">
+                <svg class="Github" height="18" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="svg-inline--fa fa-github fa-w-16 fa-5x"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" class=""></path></svg>
+              </a>
+            </nav>
+          </div>
+        </header>
+      </div>
+      <main class="grow flex-column justify-center">
+        <div id="results" class="container">
+          <p class="Help">
+            Open console tab in DevTools to see test output.
+          </p>
+          <div class="Stat">
+            <dl class="StatItem">
+              <dt class="StatItem-label">Status</dt>
+              <dd class="StatItem-value" data-status></dd>
+            </dl>
+            <dl class="StatItem">
+              <dt class="StatItem-label">Passed</dt>
+              <dd class="StatItem-value" data-passed>0</dd>
+            </dl>
+            <dl class="StatItem">
+              <dt class="StatItem-label">Failed</dt>
+              <dd class="StatItem-value" data-fail>0</dd>
+            </dl>
+            <dl class="StatItem">
+              <dt class="StatItem-label">Total</dt>
+              <dd class="StatItem-value" data-total>0</dd>
+            </dl>
+          </div>
+          <div class="Results"></div>
+        </div>
+      </main>
+      <footer>
+        <div class="container">
+          <div class="Projects">
+            <div class="Project flex-row items-center">
+              <div class="Project-logo">
+                <svg width="64" height="64" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M58.6125 1.45014C61.9614 -0.483382 66.0875 -0.483381 69.4365 1.45015L115.637 28.124C118.986 30.0575 121.049 33.6308 121.049 37.4979V90.8455C121.049 94.7126 118.986 98.2859 115.637 100.219L69.4365 126.893V126.893C68.1503 127.636 66.7304 126.552 66.7304 125.067V105.068C66.7304 103.7 67.6798 102.543 68.9011 101.927C69.0815 101.835 69.26 101.739 69.4364 101.637L93.7644 87.5914C97.1134 85.6579 99.1764 82.0846 99.1764 78.2175V50.1259C99.1764 46.2589 97.1134 42.6855 93.7644 40.752L69.4364 26.7062C66.0874 24.7727 61.9613 24.7727 58.6123 26.7062L34.2843 40.752C30.9353 42.6855 28.8723 46.2589 28.8723 50.1259V78.2175C28.8723 82.0846 30.9353 85.6579 34.2843 87.5914L58.6123 101.637C58.7887 101.739 58.9672 101.835 59.1476 101.927C60.3689 102.543 61.3183 103.7 61.3183 105.068V125.068C61.3183 126.553 59.8985 127.636 58.6125 126.893V126.893L12.412 100.219C9.06305 98.2859 7 94.7126 7 90.8455V37.4979C7 33.6308 9.06305 30.0575 12.412 28.124L58.6125 1.45014Z" fill="url(#plant0_linear)"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M91.0584 45.439L66.7304 31.3932C65.0559 30.4264 62.9928 30.4264 61.3183 31.3932L36.9903 45.439C35.3158 46.4057 34.2843 48.1924 34.2843 50.1259V78.2175C34.2843 80.151 35.3158 81.9377 36.9903 82.9045L58.3184 95.2182C59.6517 95.988 61.3184 95.0258 61.3184 93.4862L61.3184 91.7361C61.3184 91.0216 60.9372 90.3613 60.3184 90.004L47.5468 82.6304C46.684 82.1322 46.3883 81.0289 46.8865 80.1661C47.3847 79.3032 48.488 79.0076 49.3508 79.5058L58.3184 84.6832C59.6517 85.453 61.3184 84.4907 61.3184 82.9511L61.3184 63.2697C61.3184 61.7752 62.5299 60.5637 64.0244 60.5637C65.5189 60.5637 66.7304 61.7752 66.7304 63.2697L66.7304 70.3506C66.7304 71.8902 68.3971 72.8524 69.7304 72.0826L78.7455 66.8777C79.6084 66.3796 80.7117 66.6752 81.2099 67.538C81.708 68.4009 81.4124 69.5042 80.5495 70.0023L67.7304 77.4035C67.1116 77.7608 66.7304 78.421 66.7304 79.1355L66.7304 93.4861C66.7304 95.0258 68.397 95.988 69.7304 95.2182L91.0584 82.9045C92.7329 81.9377 93.7644 80.151 93.7644 78.2175V50.1259C93.7644 48.1924 92.7329 46.4057 91.0584 45.439ZM73.0444 86.4801C72.5463 85.6172 72.8419 84.5139 73.7047 84.0158L87.7656 75.8977C88.6284 75.3996 89.7317 75.6952 90.2299 76.5581C90.728 77.4209 90.4324 78.5242 89.5696 79.0224L75.5087 87.1404C74.6459 87.6386 73.5426 87.3429 73.0444 86.4801ZM55.9539 59.42C56.4521 58.5572 56.1565 57.4538 55.2936 56.9557L41.2328 48.8377C40.37 48.3395 39.2667 48.6351 38.7685 49.498C38.2703 50.3608 38.566 51.4641 39.4288 51.9623L53.4896 60.0803C54.3525 60.5785 55.4558 60.2828 55.9539 59.42Z" fill="url(#plant1_linear)"/>
+                  <defs>
+                  <linearGradient id="plant0_linear" x1="64.0244" y1="128.214" x2="85.3482" y2="11.6991" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#939393"/>
+                  <stop offset="1" stop-color="#ECECEC"/>
+                  </linearGradient>
+                  <linearGradient id="plant1_linear" x1="93.7644" y1="96.9503" x2="54.8002" y2="39.2527" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#7DB800"/>
+                  <stop offset="0.519337" stop-color="#68CD03"/>
+                  <stop offset="1" stop-color="#C7E800"/>
+                  </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <div class="Project-bar grow">
+                <h3 class="Project-title">Plant</h3>
+                <p class="Project-desc">
+                  Web server
+                </p>
+              </div>
+
+              <div>
+                <a class="btn" href="https://github.com/rumkin/plant">Github</a>
+              </div>
+            </div>
+
+            <div class="Project flex-row items-center">
+              <div class="Project-logo">
+                <svg width="64" height="64" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="128" height="128" rx="16" fill="url(#paint0_linear)"/>
+                  <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="128">
+                  <rect width="128" height="128" rx="16" fill="url(#paint1_linear)"/>
+                  </mask>
+                  <g mask="url(#mask0)">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M126.736 78.7293C128.457 78.7293 129.374 76.6986 128.236 75.407L65.5005 4.21516C64.7042 3.31154 63.2958 3.31154 62.4995 4.21516L-0.23609 75.407C-1.37434 76.6986 -0.457204 78.7293 1.26443 78.7293H27.3561C28.4607 78.7293 29.3561 79.6247 29.3561 80.7293V195.735C29.3561 196.839 30.2516 197.735 31.3561 197.735H96.8873C97.9919 197.735 98.8873 196.839 98.8873 195.735V80.7293C98.8873 79.6247 99.7828 78.7293 100.887 78.7293H126.736Z" fill="url(#paint2_linear)"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M111.038 75.886C112.759 75.886 113.676 73.8554 112.538 72.5637L65.5005 19.1859C64.7042 18.2823 63.2958 18.2823 62.4995 19.1859L15.4619 72.5637C14.3237 73.8554 15.2408 75.886 16.9624 75.886H35.4534C36.5579 75.886 37.4534 76.7814 37.4534 77.886V165.077C37.4534 166.181 38.3488 167.077 39.4534 167.077H88.7332C89.8378 167.077 90.7332 166.181 90.7332 165.077V77.886C90.7332 76.7814 91.6286 75.886 92.7332 75.886H111.038Z" fill="url(#paint3_linear)"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M95.5718 72.0326C97.2935 72.0326 98.2106 70.002 97.0723 68.7104L65.5005 32.8829C64.7042 31.9793 63.2958 31.9793 62.4995 32.8829L30.9277 68.7104C29.7894 70.002 30.7066 72.0326 32.4282 72.0326H43.4308C44.5354 72.0326 45.4308 72.9281 45.4308 74.0326V133.82C45.4308 134.924 46.3262 135.82 47.4308 135.82H80.6997C81.8043 135.82 82.6997 134.924 82.6997 133.82V74.0326C82.6997 72.9281 83.5952 72.0326 84.6997 72.0326H95.5718Z" fill="url(#paint4_linear)"/>
+                  </g>
+                  <defs>
+                  <linearGradient id="paint0_linear" x1="64" y1="0" x2="64" y2="128" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FFB800"/>
+                  <stop offset="1" stop-color="#FF5C00"/>
+                  </linearGradient>
+                  <linearGradient id="paint1_linear" x1="64" y1="0" x2="64" y2="128" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00FFC2"/>
+                  <stop offset="1" stop-color="#0057FF"/>
+                  </linearGradient>
+                  <linearGradient id="paint2_linear" x1="64" y1="3.53745" x2="64" y2="197.735" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#F8FBFC" stop-opacity="0.72"/>
+                  <stop offset="1" stop-color="#E6ECED" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="paint3_linear" x1="64" y1="18.5082" x2="64" y2="167.077" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#F8FBFC" stop-opacity="0.72"/>
+                  <stop offset="1" stop-color="#E6ECED" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="paint4_linear" x1="64" y1="32.2052" x2="64" y2="135.82" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#F8FBFC"/>
+                  <stop offset="1" stop-color="#E6ECED"/>
+                  </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <div class="Project-bar grow">
+                <h3 class="Project-title">TestUp</h3>
+                <p class="Project-desc">
+                  Test framework
+                </p>
+              </div>
+              <div>
+                <a class="btn" href="https://github.com/rumkin/testup">Github</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="Footer">
+            &copy; <A href="https://rumk.in">Rumkin</a>, 2019.
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div id="usage" class="Drawer on-page-load">
+      <a class="Drawer-backdrop" href="#" aria-label="Close"></a>
+      <div class="Drawer-panel">
+        <div class="Page">
+          <header class="Page-header flex-row items-center">
+            <h1 class="Page-headerTitle grow">
+              Plant Browser Demo
+            </h1>
+            <a href="#" class="btn Page-closeBtn">&times;</a>
+          </header>
+          <div class="Page-body">
+            <p>
+              This is a single-file demo web application. Its' purpose
+              is to show how to develop fully functional web server with test coverage
+              without Node.js using only browser and code editor.
+            </p>
+
+            <h2>Usage</h2>
+            <ol>
+              <li>
+                Save this page on disk.
+              </li>
+              <li>
+                Open it in code editor.
+              </li>
+              <li>
+                Update <code>#Server</code> and <code>#Spec</code> scripts code.
+              </li>
+              <li>
+                Refresh the page. DevTools console should contain complete
+                output of your test.
+              </li>
+            </ol>
+
+            <p>
+              Detailed explanation of how it works could be found in
+              <a href="https://github.com/rumkin/plant-browser-demo#readme">
+                repository's Readme
+              </a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dependencies -->
+    <script src="https://unpkg.com/@plant/plant@2.4.0/dist/plant.js" integrity="sha384-hc0BExRTspC6FVmNT5iVMW7MnsFYEek6WzopHCMGlsbt8nUKqmAaAIlltJpssCP2" crossorigin="anonymous" type="application/javascript"></script>
+    <script src="https://unpkg.com/@plant/router@1.2.0/dist/router.js" integrity="sha384-6UF+sSCH/xYWiVc34/rRjZt2oNhR8SO86u4rKWz+3cnkzY5CGpPf9rgjM282Zz1W" crossorigin="anonymous" type="application/javascript"></script>
+    <script src="https://unpkg.com/@testup/core@0.2.1/testup.js" integrity="sha384-QnZoJUkN5kIR7rEDQT/mVdcLxG+yuFZtxCZ7zaUq8fywKN8gHkAaYIivxbsdRMlK" crossorigin="anonymous" type="application/javascript"></script>
+    <script src="https://unpkg.com/tiny-assert@0.1.0/index.js" integrity="sha384-egT7iCtT7B1dE5zETa6z0HRabULtNjiZrvTw6TeQJXWzstFqmEYIi9wwnl9rrTT9" crossorigin="anonymous" type="application/javascript"></script>
+
+    <!-- Plant scripts -->
+    <script id="Server" language="javascript">
+      // createServer() should return configured Plant server instance.
+      // It will be used by main function to initialize new server instance
+      // and use it to run tests
+      function createServer() {
+        const plant = new Plant()
+
+        const router = new PlantRouter()
+
+        router.get('/hello-world', ({res}) => {
+          res.body = 'Hello, World!'
+        })
+
+        plant.use('/api/v1/*', router)
+        plant.use('/index.html', ({res}) => {
+          res.html('<DOCTYPE html><html><body>Hello</body></html>')
+        })
+
+        return plant
+      }
+    </script>
+
+    <script id="Spec" language="javascript">
+      // createSpec() is a standard TestUp scenario creation function.
+      // it describes test scenario and is similar to mocha library the next
+      // differenece: it has middlewares and contexts like Plant server
+      // what allows tests to be modular and less coupled. You can read about
+      // it at the project's page at Github:
+      // https://github.com/rumkin/testup/tree/master/packages/@testup/core#readme
+      // In our case we use contexts to pass request method.
+      function createSpec({describe, it}) {
+        describe('Server', () => {
+          describe('Router', () => {
+            describe('/api', () => {
+              it('Should handle request', async ({request}) => {
+                const res = await request('/api/v1/hello-world')
+
+                assert.equal(res.body, 'Hello, World', 'expect res.body "Hello, World!"')
+              })
+
+              it('Should not handle request', async ({request}) => {
+                const res = await request('/')
+
+                assert.equal(res.status, 404, 'Status 404')
+              })
+            })
+
+            describe('/index.html', () => {
+              it('Should return text/html with contnet-type', async ({request}) => {
+                const res = await request('/index.html')
+
+                assert.equal(res.headers.get('content-type'), 'text/html', 'expect Content-Type "text/html"')
+              })
+            })
+          })
+        })
+      }
+    </script>
+
+    <script id="TestupHelpers" language="javascript">
+      // Assertion library reexport
+      assert = TinyAssert
+
+      // TestUp reporter. It's using to output test results into console.
+      class TestReporter {
+        constructor(rootEl) {
+          this.rootEl = rootEl
+          this.nest = [rootEl.querySelector('.Results')]
+          this.unitErrors = []
+          this.scriptErrors = []
+          this.errors = []
+        }
+
+        get lastEl() {
+          return this.nest[this.nest.length - 1]
+        }
+
+        startSuite(unit) {
+          if (unit.depth > 0) {
+            console.group(unit.label)
+
+            const reportEl = h('div', {
+              class: 'Result'
+            }, [
+              h('div', {class: 'Result-header'}, [unit.label]),
+              h('div', {class: 'Result-body'}),
+            ])
+
+            this.lastEl.appendChild(reportEl)
+            this.nest.push(reportEl.querySelector('.Result-body'))
+          }
+          else {
+            this.unit = unit
+          }
+        }
+
+        endSuite(unit) {
+          if (unit.depth == 0) {
+            const statusEl = this.rootEl.querySelector('[data-status]')
+
+            if (unit.isOk) {
+              statusEl.appendChild(h('span', {class: 'ResultStatus-ok'}, ['OK']))
+            }
+            else {
+              statusEl.appendChild(h('span', {class: 'ResultStatus-fail'}, ['FAIL']))
+            }
+            this.rootEl.querySelector('[data-total]').textContent = unit.total.toString(10)
+            this.rootEl.querySelector('[data-passed]').textContent = unit.passed.toString(10)
+            this.rootEl.querySelector('[data-fail]').textContent = unit.failed.toString(10)
+          }
+          else {
+            console.groupEnd()
+            this.nest.pop()
+          }
+        }
+
+        startCase(unit) {
+          const {lastElementChild} = this.lastEl
+          let tableEl
+          if (! lastElementChild || lastElementChild.className !== 'ResultList') {
+            tableEl = h('ul', {class: 'ResultList'})
+
+            this.lastEl.appendChild(tableEl)
+          }
+          else {
+            tableEl = lastElementChild
+          }
+
+          tableEl.appendChild(
+            h('li', {class: 'ResultList-item'}, [
+              h('div', {class: 'Result-statusCell'}, []),
+              h('div', {class: 'Result-dataCell'}, [unit.label]),
+            ])
+          )
+        }
+
+        endCase(unit) {
+          const lastRow = this.lastEl.querySelector('.ResultList:last-child .ResultList-item:last-child')
+          const dataCell = lastRow.querySelector('.Result-dataCell')
+          const statusCell = lastRow.querySelector('.Result-statusCell')
+
+          let statusEl
+          let reportEl
+          if (unit.isOk) {
+            statusEl = h('span', {class: 'ResultStatus-ok'}, ['OK'
+            ])
+            console.log('%c✓ %c%s', 'color:green;font-weight:bold', 'color:black', unit.label)
+          }
+          else {
+            statusEl = h('span', {class: 'ResultStatus-fail'}, ['FAIL'])
+            reportEl = h('div', {class: 'Result-failReport'}, [
+              h('pre', {class: 'Result-error'}, [errorToString(unit.error)])
+            ])
+
+            console.log('%c✖ %c%s', 'color:red', 'color:black', unit.label)
+            const {error} = unit
+            console.error(error)
+            console.table([
+              error,
+            ], ['expected', 'actual'])
+          }
+
+          statusCell.appendChild(statusEl)
+          if (reportEl) {
+            dataCell.appendChild(reportEl)
+          }
+        }
+
+        reportBrokenUnit(unit, error) {
+          this.unitErrors.push(error);
+        }
+
+        reportBrokenScript(error) {
+          this.scriptErrors.push(error);
+        }
+
+        reportError(error) {
+          this.errors.push(error);
+        }
+      }
+
+      function errorToString(error) {
+        const {stack} = error
+        const message = error.toString()
+
+        if (stack.startsWith(message)) {
+          return stack
+        }
+        else {
+          return `${message}\n${stack}`
+        }
+      }
+    </script>
+
+    <script id="PlantHelpers" language="javascript">
+      // Test helper method to emulate HTTP requests
+      function contextFromRequest(
+        url,
+        {
+          method = 'GET',
+          headers = {},
+          body = null,
+        } = {}
+      ) {
+        const _url = new URL(url, 'http://localhost:8000')
+        const res = new Plant.Response({
+          url: _url,
+        })
+
+        return {
+          req: new Plant.Request({
+            url: _url,
+            method,
+            headers: Object.assign({
+              'user-agent': navigator.userAgent,
+            }, headers),
+            body,
+          }),
+          res,
+          socket: new Plant.Socket({
+            peer: new Plant.Peer({
+              uri: new Plant.URI({
+                protocol: window.location.protocol,
+                hostname: window.location.hostname,
+                port: window.location.port,
+              })
+            }),
+          })
+        }
+      }
+    </script>
+
+    <script id="Utils" language="javascript">
+      function h(tag, ...args) {
+        const element = document.createElement(tag)
+        if (! args.length) {
+          return element
+        }
+        let attrs
+        let children
+        if (Array.isArray(args[0])) {
+          children = args[0]
+          attrs = {}
+        }
+        else {
+          attrs = args[0]
+          children = args[1] || []
+        }
+
+        for (const [name, value] of Object.entries(attrs)) {
+          element.setAttribute(name.replace(/[A-Z]/g, v => `-${v}`).toLowerCase(), value)
+        }
+
+        children.forEach((child) => {
+          if (typeof child === 'string') {
+            child = document.createTextNode(child)
+          }
+
+          element.appendChild(child)
+        })
+
+        return element
+      }
+    </script>
+
+    <script id="Main" language="javascript">
+      function runTest(rootEl) {
+        // Test reporter
+        const reporter = new TestReporter(rootEl)
+        // Server instance
+        const server = createServer()
+        // 404 request wrapper
+        const handle = Plant.create(
+          async ({res}, next) => {
+            await next()
+
+            if (res.body === null) {
+              res.status = 404
+              res.text('Nothing found')
+            }
+          },
+          ...server.handlers,
+        ).getHandler()
+
+        // Run tests
+        Testup.runScript({
+          context: {
+            handle,
+            request: (...args) => {
+              const ctx = contextFromRequest(...args)
+              return handle(ctx)
+              // Return response
+              .then(() => ctx.res)
+            },
+          },
+          script: createSpec,
+          reporter,
+        })
+        .finally(() => {
+          const {unit} = reporter
+          const statusEl = rootEl.querySelector('[data-status]')
+
+          if (unit.isOk) {
+            statusEl.innerHTML = '<span class="ResultStatus-ok">OK</span>'
+          }
+          else {
+            statusEl.innerHTML = '<span class="ResultStatus-fail">FAIL</span>'
+          }
+          rootEl.querySelector('[data-total]').textContent = unit.total.toString(10)
+          rootEl.querySelector('[data-passed]').textContent = unit.passed.toString(10)
+          rootEl.querySelector('[data-fail]').textContent = unit.failed.toString(10)
+        })
+      }
+
+      function main() {
+        // UI Helpers
+
+        // Remove initial transitions lock
+        window.addEventListener('load', () => {
+          delete document.body.dataset.loading
+        })
+
+        function onHashChange() {
+          const hasHash = location.hash.length > 1
+
+          if (hasHash) {
+            document.getElementById('root').className = 'blur'
+          }
+          else {
+            document.getElementById('root').className = ''
+          }
+        }
+
+        onHashChange()
+        window.addEventListener('hashchange', onHashChange)
+
+        // Bind tests
+        const rootEl = document.querySelector('#results')
+        runTest(rootEl)
+      }
+
+      main()
+    </script>
+
+    <style type="text/css">
+      :root {
+        --fg: #2D3748;
+        --fg-50: #2D374880;
+        --fg-mute: #4A5568;
+        --fg-fade: #bcc0c7;
+        --bg: #fff;
+        --bg-light: #F7FAFC;
+        --border: #e8e8e8;
+
+        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        --font-mono: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --the-ok: #75b400;
+        --the-fail: #E53E3E;
+
+        --link: var(--fg);
+        --link-decor: var(--fg-50);
+      }
+
+      html {
+        font-family: var(--font-sans);
+      }
+
+      .mono, code {
+        font-family: var(--font-mono);
+      }
+
+      code {
+        font-family: var(--font-mono);
+        background-color: var(--bg-light);
+        padding: 2px 4px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      pre code {
+        display: block;
+      }
+
+      html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+
+
+        color: var(--fg);
+        background: var(--bg);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration-color: var(--link-decor);
+      }
+
+      .btn {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--bg);
+        color: var(--fg);
+        padding: 0.5em;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
+        transition: box-shadow 0.5s;
+      }
+
+      .btn:active {
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+        transition: box-shadow 0.2s;
+      }
+
+      #root {
+        display: flex;
+        flex-direction: column;
+
+        min-height: 100%;
+
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+
+      .flex-column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .flex-row {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .items-center {
+        align-items: center;
+      }
+
+      .justify-center {
+        justify-content: center;
+      }
+
+      .grow {
+        flex-grow: 1;
+      }
+
+      .grow-no {
+        flex-grow: 0;
+      }
+
+      .shrink {
+        flex-shrink: 1;
+      }
+
+      .shrink-no {
+        flex-shrink: 0;
+      }
+
+      [data-loading] .on-page-load,
+      [data-loading] .on-page-load * {
+        transition: none !important;
+      }
+
+      .blur {
+        filter: blur(4px);
+        transition: filter 1s;
+      }
+
+      .container {
+        width: 980px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @media (max-width: 980px) {
+        .container {
+          width: 100%;
+          margin: 0;
+        }
+      }
+
+      .Header {
+        padding: 1em 0;
+        display: flex;
+        color: var(--fg-mute);
+      }
+
+      @media (max-width: 320px) {
+        .Header {
+          display: block;
+        }
+      }
+
+      .HeaderNav > * {
+        margin-left: 0.5em;
+      }
+
+      .HeaderNav > *:first-child {
+        margin-left: 0;
+      }
+
+      @media (max-width: 320px) {
+        .HeaderNav {
+          margin: 16px 0;
+        }
+      }
+
+      .Brand-name {
+        font-weight: bold;
+      }
+
+      .Brand-version {
+        font-family: var(--font-mono);
+        font-size: 14px;
+      }
+
+      .Brand-product:before,
+      .Brand-version:before {
+        content: "· ";
+        font-family: var(--font-sans);
+        font-size: 16px;
+      }
+
+      .Hero {
+        text-align: center;
+      }
+
+      .Github {
+        vertical-align: bottom;
+      }
+
+      .Stat {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        box-shadow: 0 2px 6px 0 rgb(0,0,0,0.1);
+        transition: box-shadow 1s;
+      }
+
+      @media (max-width: 480px) {
+        .Stat {
+          grid-template-columns: 1fr;
+          grid-gap: 0;
+        }
+      }
+
+      .StatItem {
+        text-align: right;
+        margin: 0;
+        padding: 1em;
+        border-right: 1px solid var(--border);
+      }
+
+      .StatItem:last-child {
+        border-right-width: 0;
+      }
+
+      @media (max-width: 480px) {
+        .StatItem {
+          border: 0;
+          border-top: 1px solid var(--border);
+        }
+
+        .StatItemLfirst-child {
+          border: 0;
+        }
+      }
+
+      .StatItem-label {
+        color: var(--fg-mute);
+      }
+
+      .StatItem-value {
+        font-size: 1.5em;
+        color: var(--fg);
+      }
+
+      .Footer {
+        padding: 1em 0;
+
+        color: var(--fg-fade);
+
+        text-align: right;
+      }
+
+      .Footer a {
+        color: var(--fg-fade);
+        text-decoration-color: var(--fg-fade);
+      }
+
+      .Help {
+        color: var(--fg-fade);
+        text-align: center;
+      }
+
+      .Results {
+        margin-top: 8px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        box-shadow: 0 2px 6px 0 rgb(0,0,0,0.1);
+      }
+
+      .Result {
+        max-width: 100%;
+      }
+
+      .Result .Result {
+        border-left: 1px solid var(--border);
+        margin-left: 6px;
+      }
+
+      .Result-header {
+        font-size: 1em;
+        margin: 0;
+        padding: 0.5em;
+        border-bottom: 1px solid var(--border);
+        background-color: var(--bg-light);
+      }
+
+      .Result-body {
+        box-sizing: border-box;
+      }
+
+      .Result-body > .Result:not(:first-child) {
+        border-top: 1px solid var(--border);
+      }
+
+      .ResultList {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .ResultList-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .ResultList-item:last-child {
+        border-bottom: 0;
+      }
+
+      .Result-statusCell {
+        padding: 0.5em;
+        vertical-align: top;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 50px;
+      }
+
+      .Result-dataCell {
+        padding: 0.5em;
+        vertical-align: top;
+        flex: 1;
+        flex-grow: 1;
+        flex-shrink: 0;
+        overflow-x: auto;
+      }
+
+      .Result-failReport {
+        overflow-x: auto;
+      }
+
+      .Result-error {
+        font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 14px;
+        background-color: var(--bg-light);
+        border-radius: 4px;
+        padding: 6px;
+        overflow-x: auto;
+      }
+
+      .ResultStatus-ok {
+        color: var(--the-ok);
+      }
+
+      .ResultStatus-fail {
+        color: var(--the-fail);
+      }
+
+      .Projects {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        /* margin: 0 0 16px; */
+      }
+
+      @media (max-width: 620px) {
+        .Projects {
+          grid-template-columns: 1fr;
+          grid-gap: 0;
+        }
+      }
+
+      .Project {
+        background-color: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 12px;
+        margin: 8px 0;
+      }
+
+      .Project-bar {
+        padding-left: 1em;
+      }
+
+      .Project-title {
+        margin: 0.1em 0;
+        color: var(--fg);
+      }
+
+      .Project-desc {
+        margin: 0.1em 0;
+        color: var(--fg-mute);
+      }
+
+      .Drawer-backdrop {
+        display: none;
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+
+      .Drawer-panel {
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: var(--Drawer-panel-width, 480px);
+        background-color: rgba(255,255,255,0.5);
+        box-shadow: none;
+        transform: translateX(100%);
+        transition: transform 1s, box-shadow 2s;
+        z-index: 2;
+        overflow-y: auto;
+        overscroll-behavior: none;
+      }
+
+      :target .Drawer-panel {
+        transform: translateX(0);
+        /* opacity: 1; */
+        z-index: 3;
+        box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.02);
+      }
+
+      :target .Drawer-backdrop {
+        display: block;
+      }
+
+      .Page {
+        margin: 16px;
+        background-color: var(--bg);
+        border-radius: 6px;
+        line-height: 1.5;
+      }
+
+      .Page-header {
+        padding: 8px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .Page-headerTitle {
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .Page-closeBtn {
+        display: flex;
+        width: 30px;
+        height:30px;
+        align-items: center;
+        justify-content: center;
+        border: none;
+      }
+
+      .Page-body {
+        padding: 0 16px 16px;
+      }
+
+    </style>
+  </body>
+</html>
