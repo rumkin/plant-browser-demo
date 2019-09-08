@@ -240,7 +240,7 @@
                 assert.equal(res.body, 'Hello, World!', 'expect res.body "Hello, World!"')
               })
 
-              it('Should not handle request', async ({request}) => {
+              it('Should return 404 on inexistent path', async ({request}) => {
                 const res = await request('/')
 
                 assert.equal(res.status, 404, 'Status 404')
@@ -248,7 +248,7 @@
             })
 
             describe('/index.html', () => {
-              it('Should return text/html with contnet-type', async ({request}) => {
+              it('Should return correct content-type', async ({request}) => {
                 const res = await request('/index.html')
 
                 assert.equal(res.headers.get('content-type'), 'text/html', 'expect Content-Type "text/html"')
